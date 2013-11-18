@@ -32,6 +32,23 @@ VB = int(Settings.getSetting('VB'))
 VS = int(Settings.getSetting('VS'))
 AB = int(Settings.getSetting('AB'))
 AC = int(Settings.getSetting('AC'))
+
+language = Settings.getLocalizedString
+
+Error10 = str(language(30009).encode('utf-8'))
+Error11 = str(language(30010).encode('utf-8'))
+Error12 = str(language(30011).encode('utf-8'))
+Error13 = str(language(30012).encode('utf-8'))
+
+Error20 = str(language(30013).encode('utf-8'))
+Error21 = str(language(30014).encode('utf-8'))
+
+Error30 = str(language(30015).encode('utf-8'))
+Error31 = str(language(30016).encode('utf-8'))
+
+Error40 = str(language(30017).encode('utf-8'))
+Error41 = str(language(30018).encode('utf-8'))
+
 GetURL = 'http://'+IP+':'+WebPort+'/CMD.php?FNC=GETCHANNELS&PASSWORD='+Password
 
 mode = 'init'
@@ -91,7 +108,7 @@ def createProvList(url):
 
    except Exception, e:
       print 'Error connecting to the Server : ' + str(e)
-      xbmcgui.Dialog().ok('Error connecting to the Server','Please check the settings :','- Do a Right-Click on the Plugin name','- Click the "Add-on Settings" menu. Fill in the needed data')
+      xbmcgui.Dialog().ok(Error10,Error11,Error12,Error13)
 
 def createChanList(ProvID):
    print 'Creating Channels list with ProvID = ' + str(ProvID)
@@ -200,17 +217,17 @@ def SetChannel(ProvID, ChanID, ChanName):
 
                xbmc.executebuiltin('Dialog.Close(busydialog)')
                print 'Error playing the Stream in XBMC Media Player !'
-               xbmcgui.Dialog().ok('Error playing the Stream in XBMC','Try to select another channel ...')
+               xbmcgui.Dialog().ok(Error20,Error21)
 
          else:
             xbmc.executebuiltin('Dialog.Close(busydialog)')
             print 'Error connecting to the Stream (cannot play) !'
-            xbmcgui.Dialog().ok('Error connecting to the Stream','Please check the settings (Stream Port)')
+            xbmcgui.Dialog().ok(Error30,Error31)
 
    else:
       xbmc.executebuiltin('Dialog.Close(busydialog)')
       print 'Error sending SETTV command ...'
-      xbmcgui.Dialog().ok('Error sending SETTV command to the server','Please check the settings or Internet connection ...')
+      xbmcgui.Dialog().ok(Error40,Error41)
 
 
 
